@@ -56,7 +56,6 @@ const initializePassport = () => {
                     message: "An account already exists with this username!",
                   });
                 }
-                delete existingUser;
                 const hashedPassword = await bcrypt.hash(password, 10);
                 const user = new User();
                 user.firstName = firstName;
@@ -64,29 +63,30 @@ const initializePassport = () => {
                 user.username = username;
                 user.email = email;
                 user.password = hashedPassword;
+                user.loginType = "local";
                 user.providers.push("local");
                 await user.save();
                 req.tempUser = null;
                 return done(null, user);
               } else if (!tempUser.providers.includes("local")) {
-                let existingUser = await User.findOne({ email });
+                const existingUser = await User.findOne({
+                  $or: [
+                    { email },
+                    { username }
+                  ]
+                });
+
                 if (existingUser) {
+                  const emailMatches = existingUser.email === email;
+                  const emailMessage = "An account already exists with this email, if you have already registered with this email, please sign in using it!";
+                  const usernameMatchesMessage = "An account already exists with this username!";
                   return done(null, false, {
                     emailAlreadyExists: true,
-                    message:
-                        "An account already exists with this email, if you have already registered with this email, please sign in using it!",
+                    message: emailMatches ? emailMessage : usernameMatchesMessage,
                   });
                 }
-                existingUser = null;
-                existingUser = await User.findOne({ username });
-                if (existingUser) {
-                  return done(null, false, {
-                    usernameAlreadyExists: true,
-                    message: "An account already exists with this username!",
-                  });
-                }
-                delete existingUser;
-                let user = await User.findById(tempUser._id);
+
+                const user = await User.findById(tempUser._id);
                 user.firstName = firstName;
                 user.lastName = lastName;
                 user.username = username;
@@ -104,6 +104,7 @@ const initializePassport = () => {
                 });
               }
             } catch (err) {
+              console.trace(err);
               return done(err.message, false);
             }
           }
