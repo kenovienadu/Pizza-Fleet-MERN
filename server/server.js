@@ -1,17 +1,10 @@
-const express = require("express");
-const helmet = require("helmet");
-const cors = require("cors");
-const morgan = require("morgan");
-const session = require("express-session");
-const cookieParser = require("cookie-parser");
-const fileUpload = require("express-fileupload");
-const passport = require("passport");
-require("./config/passport");
-const connectDB = require("./config/db");
-
 const dotenv = require("dotenv");
+const express = require("express");
+const {initializePassport} = require("./config/passport");
+const connectDB = require("./config/db");
 const { loadRoutes } = require("./routes");
 const { loadGlobalMiddlewares } = require("./middleware");
+
 
 dotenv.config();
 
@@ -20,11 +13,13 @@ const PORT = process.env.PORT || 5000;
 const runServer = async () => {
     await connectDB();
     const app = express();
+
+    initializePassport();
     loadGlobalMiddlewares(app);
     loadRoutes(app);
 
     app.listen(PORT, () => {
-        console.log("Server is running!");
+        console.log(`Server is running on PORT: ${PORT}`);
     });
 }
 
