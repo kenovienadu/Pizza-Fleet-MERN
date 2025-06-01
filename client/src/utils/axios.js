@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "http://localhost:5600", // TODO: Use environment variable for production
   withCredentials: true,
   timeout: 10000,
   delayed: true,
