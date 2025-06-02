@@ -79,4 +79,5 @@ jobs:
           app-name: 'pizzadeliveryapp'
           slot-name: 'Production'
           package: .
+          allow-failed-deployments: true
           
