@@ -9,7 +9,7 @@ const connectDB = async () => {
       await mongoose.connect(process.env.MONGODB_URL_CONNECTION, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        dbName: 'pizza_shop',
+        dbName: process.env.DB_NAME || 'pizza_shop',
       });
       dbConnected = true;
     }
