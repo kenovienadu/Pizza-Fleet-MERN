@@ -131,8 +131,8 @@ const PizzaItem = ({
           </Group>
           <Text
             sx={(theme) => ({
-              color:
-                theme.colorScheme === "dark" ? "#a5a8ab" : theme.colors.dark[7],
+              color: theme.colorScheme === "dark" ? "#a5a8ab" : theme.colors.dark[7],
+              height: '60px',
             })}
             size="sm"
             mt="xs"

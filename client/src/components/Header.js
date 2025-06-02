@@ -24,6 +24,7 @@ import { HiOutlineUser } from "react-icons/hi";
 import { IoIosLogOut } from "react-icons/io";
 import SkeletonHeader from "./Skeletons/SkeletonHeader";
 import BagButtonWrapper from "./BagButton/BagButtonWrapper";
+import logoImage from "../assets/images/logo.jpg";
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -89,9 +90,9 @@ const MainHeader = ({ onToggleColorScheme }) => {
         <Group position="apart" sx={{ height: "100%" }}>
           <Link to="/">
             <Image
-              width={60}
+              width={70}
               height={60}
-              src="https://res.cloudinary.com/djuxwysbl/image/upload/v1677691074/PizzaDelivery/Pizza-WebApp-Logo_snyruy.png"
+              src={logoImage}
             />
           </Link>
           <Group>
