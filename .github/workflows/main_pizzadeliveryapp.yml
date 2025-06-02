@@ -60,7 +60,10 @@ jobs:
           name: node-app
 
       - name: Unzip artifact for deployment
-        run: unzip release.zip
+        run: |
+          unzip release.zip
+          pwd
+          ls -a
 
       - name: Login to Azure
         uses: azure/login@v2
