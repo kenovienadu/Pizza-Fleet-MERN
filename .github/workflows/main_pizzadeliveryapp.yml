@@ -35,7 +35,7 @@ jobs:
         run: |
           cd client
           pwd
-          zip release.zip ./build/* -r
+          zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
