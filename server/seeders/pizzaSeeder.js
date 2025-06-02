@@ -13,7 +13,7 @@ const pizzas = [
     name: "Pepperoni Supreme",
     description: "Loaded with pepperoni, mozzarella, and tomato sauce",
     price: 800,
-    image: "https://www.allrecipes.com/thmb/fFW1o307WSqFFYQ3-QXYVpnFj6E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/48727-Mikes-homemade-pizza-DDMFS-beauty-4x3-BG-2974-a7a9842c14e34ca699f3b7d7143256cf.jpg"
+    image: "https://cdn.britannica.com/08/177308-050-94D9D6BE/Food-Pizza-Basil-Tomato.jpg"
   },
   {
     name: "Vegetarian Delight",
