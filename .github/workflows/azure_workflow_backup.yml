@@ -6,7 +6,8 @@ name: Build and deploy Node.js app to Azure Web App - pizzadeliveryapp
 on:
   push:
     branches:
-      - main
+#      Uncomment the next line to enable the workflow on push to main branch
+#      - main
   workflow_dispatch:
 
 jobs:
