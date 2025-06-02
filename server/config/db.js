@@ -1,12 +1,18 @@
 const mongoose = require("mongoose");
 
+let dbConnected = false;
+
 const connectDB = async () => {
   try {
-    await mongoose.set("strictQuery", false);
-    await mongoose.connect(process.env.MONGODB_URL_CONNECTION, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    if (!dbConnected) {
+      await mongoose.set("strictQuery", false);
+      await mongoose.connect(process.env.MONGODB_URL_CONNECTION, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        dbName: 'pizza_shop',
+      });
+      dbConnected = true;
+    }
     console.log("MongoDB Connected!");
   } catch (err) {
     console.log(err.message);

@@ -4,6 +4,7 @@ const {initializePassport} = require("./config/passport");
 const connectDB = require("./config/db");
 const { loadRoutes } = require("./routes");
 const { loadGlobalMiddlewares } = require("./middleware");
+const { runSeeders } = require("./seeders");
 
 
 dotenv.config();
@@ -12,6 +13,8 @@ const PORT = process.env.PORT || 5000;
 
 const runServer = async () => {
     await connectDB();
+    await runSeeders();
+
     const app = express();
 
     initializePassport();
