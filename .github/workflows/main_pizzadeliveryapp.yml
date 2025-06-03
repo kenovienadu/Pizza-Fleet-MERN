@@ -7,7 +7,7 @@ on:
   push:
     branches:
       #      Uncomment the next line to enable the workflow on push to main branch
-      - develop
+      - main
   workflow_dispatch:
 
 jobs:
