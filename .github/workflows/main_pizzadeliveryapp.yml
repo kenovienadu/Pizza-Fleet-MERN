@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_deploy:
+  build_and_deploy:
     runs-on: ubuntu-latest
     environment:
       name: 'Production'
@@ -47,7 +47,7 @@ jobs:
         with:
           app-name: 'pizzadeliveryapp'
           slot-name: 'Production'
-          package: ./client
+          package: ./client/build
 
       - name: 'Post deployment actions'
         run: echo "Deployment to Azure Web App completed successfully."
